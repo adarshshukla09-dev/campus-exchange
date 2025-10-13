@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes | Campus Exchange</title>
+  
+  <!-- Bootstrap & FontAwesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Navbar */
+    header {
+      background: #2c3e50;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo h2 {
+      color: white;
+      margin: 0;
+      cursor: pointer;
+    }
+    nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #f1c40f;
+    }
+    .dropdown-toggle {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    .dropdown-menu a.dropdown-item {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+    .dropdown-menu a.dropdown-item:hover {
+      background-color: #3498db;
+      color: white;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Cards Grid */
+    .container {
+      margin-top: 40px;
+    }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 30px;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    .card-img-top {
+      height: 180px;
+      object-fit: contain;
+      padding: 10px;
+      background: #f7f7f7;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+    .card-body {
+      padding: 1rem 1.25rem;
+    }
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #2c3e50;
+    }
+    .card-text {
+      font-size: 1rem;
+      color: #555;
+    }
+    .btn-sm {
+      margin-right: 6px;
+    }
+    .view-pdf-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #2980b9;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .view-pdf-link:hover {
+      color: #1c5980;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 25px 20px;
+      font-weight: 500;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <!-- Header -->
+  <header role="banner">
+    <div class="logo" onclick="location.href='/sh'" role="button" tabindex="0" aria-label="Campus Exchange Home">
+      <h2>Campus Exchange</h2>
+    </div>
+
+    <nav role="navigation" aria-label="Main Navigation">
+      <a href="/sh" title="Home"><i class="fa-solid fa-house"></i></a>
+      <a href="/sh/note">Notes</a>
+      <a href="/sh/book">Books</a>
+      <a href="/sh/stationary">Stationery</a>
+
+      <!-- Dropdown -->
+      <div class="dropdown">
+        <button
+          class="dropdown-toggle"
+          type="button"
+          id="userDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          aria-label="User menu"
+        >
+          <i class="fa-solid fa-circle-user"></i>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <% if (!currUser) { %>
+            <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
+            <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
+          <% } else { %>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Browse Notes by Branch</h1>
+    <p>Find notes shared by seniors, categorized by department</p>
+  </section>
+
+
+  <!-- Notes Grid -->
+  <div class="container">
+    <div class="row">
+      <% for (let note of notes) { %>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card">
+          <img src="https://static.vecteezy.com/system/resources/previews/007/621/686/large_2x/pencil-and-sticky-note-cartoon-illustration-free-vector.jpg" class="card-img-top" 
+              alt="Student reading book illustration" >
+
+            <div class="card-body">
+              <h5 class="card-title"><%= note.title %></h5>
+              <p class="card-text"><strong>Uploaded by:</strong> <%= note.owner && note.owner.username ? note.owner.username : "Unknown Owner" %></p>
+              <p class="card-text"><strong>Branch:</strong> <%= note.branch %></p>
+              <p class="card-text"><strong>Subject:</strong> <%= note.subject %></p>
+                <p class="card-text"><strong>phone:</strong>  <%= note.whatsapp ? note.whatsapp : "+91xxxxx xxxxx"%></p>
+
+              <a href="<% note.image.url  %>" class="view-pdf-link"><i class="fa-solid fa-file-pdf"></i> View PDF</a>
+
+              <% if(currUser && currUser._id.equals(note.owner._id)) { %>
+                <div class="mt-3">
+                  <a href="/sh/note/<%= note._id  %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                  <form
+                    action="/sh/note/<%= note._id %>?_method=DELETE"
+                    method="POST"
+                    class="d-inline"
+                    onsubmit="return confirm('Are you sure you want to delete this note?');"
+                  >
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                  </form>
+                </div>
+              <% } %> 
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Campus Exchange | Made for Students</p>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

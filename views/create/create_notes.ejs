@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title || 'Campus Exchange' %></title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo h2 {
+      margin: 0;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #3498db;
+      text-shadow: 0 0 5px #3498db;
+    }
+
+    .dropdown-toggle {
+      background: transparent !important;
+      border: none !important;
+      color: white !important;
+      font-size: 1.8rem;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .dropdown-menu a.dropdown-item {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .dropdown-menu a.dropdown-item:hover {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px 20px;
+      margin-top: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo" onclick="location.href='/sh'" role="button" tabindex="0" aria-label="Campus Exchange Home">
+      <h2>Campus Exchange</h2>
+    </div>
+    <nav>
+      <a href="/sh" title="Home"><i class="fa-solid fa-house"></i></a>
+      <a href="/sh/note">Notes</a>
+      <a href="/sh/book">Books</a>
+      <a href="/sh/stationary">Stationery</a>
+
+      <!-- Dropdown -->
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-circle-user"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <% if (!currUser) { %>
+            <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
+            <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
+          <% } else { %>
+            <li><a class="dropdown-item" href="/sh/profile">Profile</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Create a New Note Listing</h1>
+    <p>Upload your notes to help others and exchange knowledge!</p>
+  </section>
+
+  <!-- Form Section -->
+  <main class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm p-4">
+
+          
+        <form action="/sh/createn" method="POST" enctype="multipart/form-data">
+  <!-- Title -->
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" name="title" required placeholder="e.g. Engineering Mechanics Notes">
+  </div>
+
+  <!-- Subject -->
+  <div class="mb-3">
+    <label for="subject" class="form-label">Subject</label>
+    <input type="text" class="form-control" id="subject" name="subject" required placeholder="e.g. Mechanics">
+  </div>
+
+  <!-- Image Upload -->
+  <div class="mb-3">
+    <label for="image" class="form-label">Upload file</label>
+    <input type="file" class="form-control" id="image" name="image" accept="*/*">
+    <div class="form-text">Optional. A cover image or relevant picture.</div>
+  </div>
+  <!-- Number -->
+<div class="mb-3">
+            <label for="whatsapp" class="form-label">phone no</label>
+            <input type="text" class="form-control" id="whatsapp" name="whatsapp" required placeholder="+91xxxxxxx">
+          </div>
+  <!-- Branch -->
+  <div class="mb-3">
+    <label for="branch" class="form-label">Branch</label>
+    <input type="text" class="form-control" id="branch" name="branch" required placeholder="e.g. CSE, ECE">
+  </div>
+
+  <!-- Submit -->
+  <div class="d-grid mt-4">
+    <button type="submit" class="btn btn-primary btn-lg">
+      <i class="fa-solid fa-plus"></i> Add Note
+    </button>
+  </div>
+</form>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Campus Exchange | Made for Students</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

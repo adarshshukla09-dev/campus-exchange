@@ -1,0 +1,75 @@
+<%- include('../partials/header', { title: 'Create Listing for Books' }) %>
+<% if (success && success.length) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= success %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+<% } %>
+
+<section class="hero">
+  <div class="container text-center">
+    <h1>Create a New Book Listing</h1>
+    <p class="lead">Share books or PDFs with fellow students</p>
+  </div>
+</section>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg p-4">
+        <form action="/sh/createb" method="POST" enctype="multipart/form-data">
+          <!-- Title -->
+          <div class="mb-3">
+            <label for="title" class="form-label">Book Title</label>
+            <input type="text" class="form-control" id="title" name="title" required placeholder="e.g. Digital Logic Design Notes">
+          </div>
+
+          <!-- Price -->
+          <div class="mb-3">
+            <label for="price" class="form-label">Price (₹)</label>
+            <input type="number" class="form-control" id="price" name="price" step="0.01" required placeholder="Enter 0 for PDF">
+          </div>
+
+          <!-- Image Upload -->
+          <div class="mb-3">
+            <label for="image" class="form-label">Upload Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+            <div class="form-text">Optional. A cover image or relevant picture.</div>
+          </div>
+
+          <!-- Subject -->
+          <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="subject" name="subject" required placeholder="e.g. Computer Networks">
+          </div>
+
+          <!-- Branch -->
+          <div class="mb-3">
+            <label for="branch" class="form-label">Branch</label>
+            <input type="text" class="form-control" id="branch" name="branch" required placeholder="e.g. CSE, ECE">
+          </div>
+          <!-- Number -->
+<div class="mb-3">
+            <label for="whatsapp" class="form-label">phone no</label>
+            <input type="text" class="form-control" id="whatsapp" name="whatsapp" required placeholder="+91xxxxxxx">
+          </div>
+          <!-- Submit Button -->
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-plus"></i> Add Listing
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

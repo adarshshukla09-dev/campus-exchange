@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title || 'Edit Note | Campus Exchange' %></title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo h2 {
+      margin: 0;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #3498db;
+      text-shadow: 0 0 5px #3498db;
+    }
+
+    .dropdown-toggle {
+      background: transparent !important;
+      border: none !important;
+      color: white !important;
+      font-size: 1.8rem;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .dropdown-menu a.dropdown-item {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .dropdown-menu a.dropdown-item:hover {
+      background-color: #3498db;
+      color: white;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px 20px;
+      margin-top: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo" onclick="location.href='/sh'" role="button" tabindex="0" aria-label="Campus Exchange Home">
+      <h2>Campus Exchange</h2>
+    </div>
+    <nav>
+      <a href="/sh" title="Home"><i class="fa-solid fa-house"></i></a>
+      <a href="/sh/note">Notes</a>
+      <a href="/sh/book">Books</a>
+      <a href="/sh/stationary">Stationery</a>
+
+      <!-- User Dropdown -->
+      <div class="dropdown">
+        <button
+          class="dropdown-toggle"
+          type="button"
+          id="userDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          aria-label="User menu"
+        >
+          <i class="fa-solid fa-circle-user"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <% if (!currUser) { %>
+            <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
+            <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
+          <% } else { %>
+       
+            <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- Main Content -->
+  <main class="container mt-5">
+    <h2 class="mb-4">Edit Note</h2>
+          <% for (let note of Notes) { %>
+    <form action="/sh/note/<%= note._id %>?_method=PUT" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
+      <!-- Title -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="title" 
+          name="title" 
+          value="<%= note.title %>" 
+          required
+        />
+        <div class="invalid-feedback">Please enter a title.</div>
+      </div>
+
+      <!-- Subject -->
+      <div class="mb-3">
+        <label for="subject" class="form-label">Subject</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="subject" 
+          name="subject" 
+          value="<%= note.subject %>" 
+          required
+        />
+        <div class="invalid-feedback">Please enter a subject.</div>
+      </div>
+
+      <!-- Branch -->
+      <div class="mb-3">
+        <label for="branch" class="form-label">Branch</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="branch" 
+          name="branch" 
+          value="<%= note.branch %>" 
+          required
+        />
+        <div class="invalid-feedback">Please enter a branch.</div>
+      </div>
+      <% if (note.image && note.image.url) { %>
+  <div class="mb-3">
+    <label class="form-label">Current Image</label><br>
+    <img src="<%= note.image.url %>" alt="Note Image" style="max-height: 200px;" class="img-thumbnail mb-2">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="removeImage" id="removeImage">
+      <label class="form-check-label" for="removeImage">
+        Remove current image
+      </label>
+    </div>
+  </div>
+<% } %>
+
+<div class="mb-3">
+  <label for="image" class="form-label">Upload New Image</label>
+  <input type="file" class="form-control" id="image" name="image" accept="image/*">
+</div>
+
+
+      <!-- Buttons -->
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-success">Update Note</button>
+        <a href="/sh/note" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </main>
+  <% } %>
+
+  <!-- Footer -->
+  <footer>
+    <p class="mb-0">&copy; 2025 Campus Exchange | Made for Students</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Optional JS for client-side validation -->
+  <script>
+    // Bootstrap 5 client-side validation
+    (() => {
+      'use strict';
+      const forms = document.querySelectorAll('.needs-validation');
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    })();
+  </script>
+</body>
+</html>

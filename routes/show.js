@@ -11,9 +11,9 @@ router.get("/", (req, res) => {
 router.get(
   "/note",
   wrapAsync(async (req, res) => {
-    const Notes = await Note.find().populate("owner", "username");
+    const notes = await Note.find().populate("owner", "username");
     // populate("owner", "name");
-    res.render("./show/Notes.ejs", { Notes });
+    res.render("./show/Notes.ejs", { notes });
   })
 );
 router.get(

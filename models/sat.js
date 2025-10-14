@@ -10,7 +10,7 @@ let StationarySchema = new mongoose.Schema({
     required: true,
   },
   owner: {
-    type: mongoose.Schema.Types.ObjectId, // ✅ Corrected this line
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
   subject: {

@@ -6,6 +6,7 @@ const app = express();
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const ExpressError = require("./utils/ExpressError.js");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
@@ -16,42 +17,51 @@ const showRoutes = require("./routes/show.js");
 const createRoutes = require("./routes/create.js");
 const updateRoutes = require("./routes/update.js");
 const deleteRoutes = require("./routes/destory.js");
-const authRoutes = require("./routes/users.js"); // Auth routes
+const authRoutes = require("./routes/users.js");
 
 const User = require("./models/s.js");
-
-// Mongoose setup
+const mongourl = process.env.MONGO_URI;
 main()
   .then(() => {
     console.log("connection sucessful");
   })
   .catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(process.env.MONGO_URI);
+  await mongoose.connect(mongourl);
 }
-// App Config
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public"))); // For static files like CSS
 app.use(flash());
+
+app.use(express.static(path.join(__dirname, "public")));
+const store = MongoStore.create({
+  mongoUrl: mongourl,
+  touchAfter: 24 * 3600,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+});
+
 app.use(
   session({
+    store: store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false, // Set to true if using HTTPS
-      maxAge: 1000 * 60 * 60 * 24, // 1 day
+      secure: false,
+      maxAge: 1000 * 60 * 60 * 24,
     },
   })
 );
-
+store.on("error", () => {
+  console.log("the error is in session store ", err);
+});
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -62,7 +72,6 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-
   res.locals.currUser = req.user;
   next();
 });

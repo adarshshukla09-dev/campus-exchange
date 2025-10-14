@@ -46,7 +46,7 @@ router.post(
       });
 
       await newBook.save();
-      res.redirect("/sh/stationary");
+      res.redirect("/sh/book");
     } catch (err) {
       console.error(err);
       res.status(500).send("Failed to save stationary item.");
@@ -106,9 +106,6 @@ router.post(
     } catch (err) {
       console.error(err);
       res.status(500).send("Failed to save stationary item.");
-      console.log("Body:", req.body);
-      console.log("File:", req.file);
-      console.log("User:", req.user);
     }
   }
 );

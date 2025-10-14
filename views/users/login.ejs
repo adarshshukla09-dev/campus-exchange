@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login - Campus Exchange</title>
+  <link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
@@ -97,19 +98,7 @@
   </style>
 </head>
 <body>
-  <% if (success && success.length) { %>
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <%= success %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  </div>
-<% } %>
 
-<% if (error && error.length) { %>
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <%= error %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  </div>
-<% } %>
 
   <main class="form-container" role="main" aria-label="Login form">
     <h2>Login</h2>
@@ -145,8 +134,7 @@
     </form>
 
     <div class="form-footer">
-      <a href="/sh/forgot-password">Forgot password?</a> |
-      <a href="/sh/register">Sign up</a>
+      <a href="/sh/signup">Sign up</a>
     </div>
   </main>
 </body>

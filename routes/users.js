@@ -32,8 +32,6 @@ router.post(
       console.error(e);
       // Render error page on failure
       res.status(400).render("error", { message: e.message });
-      // Or use redirect instead:
-      // res.redirect("/sh/signup");
     }
   })
 );
@@ -49,13 +47,14 @@ router.post(
   saveRedirectUrl,
   passport.authenticate("local", {
     failureRedirect: "/sh/login",
-    failureFlash: true,
+    failureFlash: true, // ✅ now this works
   }),
-  wrapAsync(async (req, res) => {
+  (req, res) => {
+    req.flash("success", "Welcome back!");
     const redirectUrl = req.session.redirectUrl || "/sh";
     delete req.session.redirectUrl;
     res.redirect(redirectUrl);
-  })
+  }
 );
 
 // Logout

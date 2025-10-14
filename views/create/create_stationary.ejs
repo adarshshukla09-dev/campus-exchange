@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title><%= title || 'Create Listing | Campus Exchange' %></title>
-
+<link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -131,37 +131,53 @@
     <div class="form-container">
       <h2>Create a New Stationery Listing</h2>
 
-      <form action="/sh/createsta" method="POST" enctype="multipart/form-data">
+      <form action="/sh/createsta" method="POST"   class="needs-validation" novalidate        enctype="multipart/form-data">
         <!-- Title -->
         <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
+          <label for="title" class="form-label" required >Title</label>
           <input type="text" class="form-control" id="title" name="title" required>
         </div>
-
+        <div class="invalid-feedback">
+        Please title
+      </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
         <!-- Price -->
         <div class="mb-3">
           <label for="price" class="form-label">Price</label>
-          <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+          <input type="number" class="form-control" id="price" required name="price" step="1" required>
         </div>
+            <div class="invalid-feedback">
+      enter greater 0
+    </div>
 
         <!-- Subject -->
         <div class="mb-3">
           <label for="subject" class="form-label">Subject</label>
           <input type="text" class="form-control" id="subject" name="subject" required>
         </div>
+              <div class="invalid-feedback">
+enter the subject     </div>
          <!-- Image Upload -->
           <div class="mb-3">
-            <label for="image" class="form-label">Upload Image</label>
-            <input type="file" class="form-control" id="image" name="image" accept="image/*">
-            <div class="form-text">Optional. A cover image or relevant picture.</div>
+            <label for="image" class="form-label"  required >Upload Image</label>
+            <input type="file" class="form-control" id="image" name="image" required accept="image/*">
           </div>
-
+      <div class="invalid-feedback">
+upload image    </div>
         <!-- Branch -->
         <div class="mb-3">
-          <label for="branch" class="form-label">Branch</label>
+          <label for="branch"  required  class="form-label">Branch</label>
           <input type="text" class="form-control" id="branch" name="branch" required>
         </div>
-
+     <div class="invalid-feedback">
+enter youre branch   </div>
+  <!-- Number -->
+<div class="mb-3">
+            <label for="whatsapp" class="form-label">phone no</label>
+            <input type="text" class="form-control" id="whatsapp" maxlength="10" name="whatsapp" placeholder="+91xxxxxxx">
+          </div>
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Add Listing</button>
       </form>
@@ -172,7 +188,27 @@
   <footer>
     <p>&copy; 2025 Campus Exchange | Made for Students</p>
   </footer>
+<script>(function () {
+  "use strict";
 
+  // Fetch all the forms we want to apply custom validation to
+  var forms = document.querySelectorAll(".needs-validation");
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener(
+      "submit",
+      function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault(); // Prevent form submission
+          event.stopPropagation();
+        }
+        form.classList.add("was-validated"); // Show validation feedback
+      },
+      false
+    );
+  });
+})();</script>
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>

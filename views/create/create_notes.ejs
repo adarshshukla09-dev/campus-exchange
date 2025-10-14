@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title || 'Campus Exchange' %></title>
-
+<link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -137,33 +137,42 @@
         <form action="/sh/createn" method="POST" enctype="multipart/form-data">
   <!-- Title -->
   <div class="mb-3">
-    <label for="title" class="form-label">Title</label>
+    <label for="title" class="form-label" required>Title</label>
     <input type="text" class="form-control" id="title" name="title" required placeholder="e.g. Engineering Mechanics Notes">
   </div>
-
+   <div class="invalid-feedback">
+        Please title
+      </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
   <!-- Subject -->
   <div class="mb-3">
     <label for="subject" class="form-label">Subject</label>
     <input type="text" class="form-control" id="subject" name="subject" required placeholder="e.g. Mechanics">
   </div>
-
+     <div class="invalid-feedback">
+enter the subject     </div>
   <!-- Image Upload -->
   <div class="mb-3">
     <label for="image" class="form-label">Upload file</label>
-    <input type="file" class="form-control" id="image" name="image" accept="*/*">
+    <input type="file" class="form-control" id="image" name="image" accept="*/*" required>
     <div class="form-text">Optional. A cover image or relevant picture.</div>
   </div>
+        <div class="invalid-feedback">
+upload image    </div>
   <!-- Number -->
 <div class="mb-3">
             <label for="whatsapp" class="form-label">phone no</label>
-            <input type="text" class="form-control" id="whatsapp" name="whatsapp" required placeholder="+91xxxxxxx">
+            <input type="text" class="form-control" id="whatsapp" maxlength="10" name="whatsapp" placeholder="+91xxxxxxx">
           </div>
   <!-- Branch -->
   <div class="mb-3">
     <label for="branch" class="form-label">Branch</label>
     <input type="text" class="form-control" id="branch" name="branch" required placeholder="e.g. CSE, ECE">
   </div>
-
+     <div class="invalid-feedback">
+enter youre branch   </div>
   <!-- Submit -->
   <div class="d-grid mt-4">
     <button type="submit" class="btn btn-primary btn-lg">
@@ -181,8 +190,27 @@
   <footer>
     <p>&copy; 2025 Campus Exchange | Made for Students</p>
   </footer>
+<script>(function () {
+  "use strict";
 
-  <!-- Bootstrap JS -->
+  // Fetch all the forms we want to apply custom validation to
+  var forms = document.querySelectorAll(".needs-validation");
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener(
+      "submit",
+      function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault(); // Prevent form submission
+          event.stopPropagation();
+        }
+        form.classList.add("was-validated"); // Show validation feedback
+      },
+      false
+    );
+  });
+})();</script>  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

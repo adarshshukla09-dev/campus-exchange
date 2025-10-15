@@ -4,55 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Notes | Campus Exchange</title>
-  
-  <!-- Bootstrap & FontAwesome -->
+  <link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
-<link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
   <style>
+    /* Base */
     body {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: rgba(0, 0, 0, 0.05);
+      color: #2c3e50;
+    }
+    a {
+      text-decoration: none;
     }
 
     /* Navbar */
-    header {
+    .navbar-custom {
       background: #2c3e50;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
-    .logo h2 {
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link,
+    .navbar-custom .dropdown-toggle {
       color: white;
-      margin: 0;
-      cursor: pointer;
-    }
-    nav {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
       font-weight: 600;
+      font-size: 1rem;
       transition: color 0.3s ease;
+      position: relative;
     }
-    nav a:hover {
-      color: #f1c40f;
+    .navbar-custom .nav-link:hover,
+    .navbar-custom .nav-link:focus,
+    .navbar-custom .dropdown-toggle:hover,
+    .navbar-custom .dropdown-toggle:focus {
+      color: #3498db;
+      outline: none;
     }
-    .dropdown-toggle {
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 1.8rem;
-      cursor: pointer;
+    .navbar-custom .nav-link::after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 0;
+      background: #3498db;
+      left: 0;
+      bottom: 0;
+      transition: width 0.3s ease;
+    }
+    .navbar-custom .nav-link:hover::after,
+    .navbar-custom .nav-link:focus::after {
+      width: 100%;
     }
     .dropdown-menu a.dropdown-item {
       color: #2c3e50;
@@ -65,34 +69,47 @@
 
     /* Hero */
     .hero {
-      background: linear-gradient(135deg, #3498db, #2980b9);
+      background: linear-gradient(135deg, #2980b9, #6dd5fa);
       color: white;
       text-align: center;
-      padding: 70px 20px;
+      padding: 80px 20px;
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      user-select: none;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     .hero h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
+      font-size: 3rem;
+      font-weight: 700;
       margin-bottom: 10px;
     }
     .hero p {
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       opacity: 0.9;
     }
 
     /* Cards Grid */
     .container {
-      margin-top: 40px;
+      padding-top: 40px;
+      padding-bottom: 40px;
     }
     .card {
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       margin-bottom: 30px;
+      color: #2c3e50;
+      font-weight: 600;
     }
-    .card:hover {
+    .card:hover,
+    .card:focus-within {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      outline: none;
     }
     .card-img-top {
       height: 180px;
@@ -108,26 +125,52 @@
     .card-title {
       font-size: 1.3rem;
       font-weight: 700;
-      color: #2c3e50;
+      margin-bottom: 0.5rem;
     }
     .card-text {
-      font-size: 1rem;
+      font-weight: 500;
       color: #555;
+      margin-bottom: 0.4rem;
     }
+
+    /* Buttons */
     .btn-sm {
-      margin-right: 6px;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
+    .btn-warning:hover,
+    .btn-warning:focus {
+      background-color: #2980b9 !important;
+      border-color: #2980b9 !important;
+      color: white !important;
+      outline: none;
+      box-shadow: 0 0 6px #2980b9;
+    }
+    .btn-danger:hover,
+    .btn-danger:focus {
+      background-color: #c0392b !important;
+      border-color: #c0392b !important;
+      color: white !important;
+      outline: none;
+      box-shadow: 0 0 6px #c0392b;
+    }
+
     .view-pdf-link {
       display: inline-block;
       margin-top: 10px;
       font-weight: 600;
-      color: #2980b9;
+      color: #3498db;
       text-decoration: none;
       transition: color 0.3s ease;
     }
-    .view-pdf-link:hover {
-      color: #1c5980;
+    .view-pdf-link:hover,
+    .view-pdf-link:focus {
+      color: #2980b9;
       text-decoration: underline;
+      outline: none;
     }
 
     /* Footer */
@@ -136,98 +179,169 @@
       color: white;
       text-align: center;
       padding: 25px 20px;
+      font-size: 0.95rem;
       font-weight: 500;
-      margin-top: 60px;
+      border-top: 3px solid #3498db;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+   
+      .hero {
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+      .card {
+
+        margin-bottom: 20px;
+      }
+      .card-img-top {
+        height: auto;
+        max-height: 250px;
+      }
+      .card-body {
+        font-size: 0.95rem;
+      }
+      .card-title {
+        font-size: 1.2rem;
+      }
+      .card-text {
+        font-size: 0.9rem;
+      }
+      .btn-sm {
+        width: 100%;
+        margin-top: 5px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-custom sticky-top" aria-label="Primary Navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="/sh" tabindex="0">Campus Exchange</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <!-- Header -->
-  <header role="banner">
-    <div class="logo" onclick="location.href='/sh'" role="button" tabindex="0" aria-label="Campus Exchange Home">
-      <h2>Campus Exchange</h2>
-    </div>
-
-    <nav role="navigation" aria-label="Main Navigation">
-      <a href="/sh" title="Home"><i class="fa-solid fa-house"></i></a>
-      <a href="/sh/note">Notes</a>
-      <a href="/sh/book">Books</a>
-      <a href="/sh/stationary">Stationery</a>
-
-      <!-- Dropdown -->
-      <div class="dropdown">
-        <button
-          class="dropdown-toggle"
-          type="button"
-          id="userDropdown"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          aria-label="User menu"
-        >
-          <i class="fa-solid fa-circle-user"></i>
-        </button>
-
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-          <% if (!currUser) { %>
-            <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
-            <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
-          <% } else { %>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
-          <% } %>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" href="/sh" title="Home" tabindex="0">
+              <i class="fa-solid fa-house"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/sh/note" tabindex="0" aria-current="page">Notes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sh/book" tabindex="0">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sh/stationary" tabindex="0">Stationery</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="userDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              aria-haspopup="true"
+              tabindex="0"
+              aria-label="User menu"
+            >
+              <i class="fa-solid fa-circle-user"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <% if (!currUser) { %>
+                <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
+                <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
+              <% } else { %>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
+              <% } %>
+            </ul>
+          </li>
         </ul>
       </div>
-    </nav>
-  </header>
-  
+    </div>
+  </nav>
 
-  <section class="hero">
+  <!-- Hero -->
+  <section class="hero" role="region" aria-label="Hero Section">
     <h1>Browse Notes by Branch</h1>
     <p>Find notes shared by seniors, categorized by department</p>
   </section>
 
-
   <!-- Notes Grid -->
-  <div class="container">
+  <main class="container" role="main" aria-label="Notes list">
     <div class="row">
       <% for (let note of notes) { %>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <article class="col-lg-4 col-md-6 col-sm-12" tabindex="0" aria-label="<%= note.title %> note card">
           <div class="card">
-          <img src="https://static.vecteezy.com/system/resources/previews/007/621/686/large_2x/pencil-and-sticky-note-cartoon-illustration-free-vector.jpg" class="card-img-top" 
-              alt="Student reading book illustration" >
-
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/007/621/686/large_2x/pencil-and-sticky-note-cartoon-illustration-free-vector.jpg"
+              class="card-img-top"
+              alt="Illustration related to notes"
+              loading="lazy"
+            />
             <div class="card-body">
-              <h5 class="card-title"><%= note.title %></h5>
+              <h2 class="card-title"><%= note.title %></h2>
               <p class="card-text"><strong>Uploaded by:</strong> <%= note.owner && note.owner.username ? note.owner.username : "Unknown Owner" %></p>
               <p class="card-text"><strong>Branch:</strong> <%= note.branch %></p>
               <p class="card-text"><strong>Subject:</strong> <%= note.subject %></p>
-                <p class="card-text"><strong>phone:</strong>  <%= note.whatsapp ? note.whatsapp : "+91xxxxx xxxxx"%></p>
+              <p class="card-text"><strong>Phone:</strong> <%= note.whatsapp ? note.whatsapp : "+91xxxxx xxxxx" %></p>
 
-              <a href="<% note.image.url  %>" class="view-pdf-link"><i class="fa-solid fa-file-pdf"></i> View PDF</a>
+              <a
+                href="<%= note.image?.url %>"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="view-pdf-link"
+                aria-label="View PDF of <%= note.title %>"
+              >
+                <i class="fa-solid fa-file-pdf"></i> View PDF
+              </a>
 
               <% if(currUser && currUser._id.equals(note.owner._id)) { %>
-                <div class="mt-3">
-                  <a href="/sh/note/<%= note._id  %>/edit" class="btn btn-warning btn-sm">Edit</a>
+            
+                  <a href="/sh/note/<%= note._id %>/edit" class="btn btn-warning btn-sm" tabindex="0">Edit</a>
                   <form
                     action="/sh/note/<%= note._id %>?_method=DELETE"
                     method="POST"
                     class="d-inline"
                     onsubmit="return confirm('Are you sure you want to delete this note?');"
                   >
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    <button type="submit" class="btn btn-danger btn-sm" tabindex="0">Delete</button>
                   </form>
                 </div>
-              <% } %> 
+              <% } %>
             </div>
           </div>
-        </div>
+        </article>
       <% } %>
     </div>
-  </div>
+  </main>
 
   <!-- Footer -->
-  <footer>
+  <footer role="contentinfo">
     <p>&copy; 2025 Campus Exchange | Made for Students</p>
   </footer>
 

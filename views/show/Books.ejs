@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Books | Campus Exchange</title>
-<link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
+  <link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
+
   <!-- Bootstrap & FontAwesome -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
@@ -14,62 +15,6 @@
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: rgba(0, 0, 0, 0.05);
-    }
-
-    /* Navbar */
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo h2 {
-      margin: 0;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #f1c40f;
-    }
-
-    .dropdown-toggle {
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    .dropdown-menu a.dropdown-item {
-      color: #2c3e50;
-      font-weight: 600;
-    }
-
-    .dropdown-menu a.dropdown-item:hover {
-      background-color: #3498db;
-      color: white;
     }
 
     /* Hero Section */
@@ -141,54 +86,120 @@
       font-weight: 500;
       margin-top: 60px;
     }
+
+    /* Responsive Nav Customization */
+    @media (max-width: 768px) {
+      .navbar-brand {
+        font-size: 1.2rem;
+      }
+
+      .navbar-nav .nav-link {
+        font-size: 1rem;
+        padding: 8px 12px;
+      }
+
+      .dropdown-menu {
+        font-size: 0.95rem;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler:focus {
+        box-shadow: none;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .card {
+        margin-bottom: 20px;
+      }
+
+      .card-img-top {
+        height: auto;
+        max-height: 250px;
+      }
+
+      .card-body {
+        padding: 15px;
+        font-size: 0.95rem;
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+      }
+
+      .card-text {
+        font-size: 0.9rem;
+      }
+
+      .btn {
+        width: 100%;
+        margin-top: 5px;
+      }
+    }
   </style>
 </head>
 
 <body>
-<!-- Header -->
-  <header role="banner">
-    <div class="logo" onclick="location.href='/sh'" role="button" tabindex="0" aria-label="Campus Exchange Home">
-      <h2>Campus Exchange</h2>
-    </div>
+  <!-- Responsive Navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #2c3e50;">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="/sh">Campus Exchange</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <nav role="navigation" aria-label="Main Navigation">
-      <a href="/sh" title="Home"><i class="fa-solid fa-house"></i></a>
-      <a href="/sh/note">Notes</a>
-      <a href="/sh/book">Books</a>
-      <a href="/sh/stationary">Stationery</a>
+      <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+        <ul class="navbar-nav mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/sh" title="Home"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sh/note">Notes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sh/book">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sh/stationary">Stationery</a>
+          </li>
 
-      <!-- Dropdown -->
-      <div class="dropdown">
-        <button
-          class="dropdown-toggle"
-          type="button"
-          id="userDropdown"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          aria-label="User menu"
-        >
-          <i class="fa-solid fa-circle-user"></i>
-        </button>
-
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-          <% if (!currUser) { %>
-            <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
-            <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
-          <% } else { %>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
-          <% } %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-circle-user"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <% if (!currUser) { %>
+                <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
+                <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
+              <% } else { %>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
+              <% } %>
+            </ul>
+          </li>
         </ul>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
   <!-- Hero -->
   <section class="hero">
     <h1>Browse Second-Hand Books</h1>
     <p>Affordable books for every subject, shared by students</p>
   </section>
-
 
   <!-- Book Grid -->
   <div class="container">
@@ -197,7 +208,6 @@
         <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="card">
             <img src="<%= book.image.url ? book.image.url : 'https://www.shutterstock.com/shutterstock/photos/2635944013/display_1500/stock-vector-flat-illustration-of-a-woman-sitting-on-the-floor-using-a-laptop-surrounded-by-books-concept-for-2635944013.jpg' %>" 
-
               class="card-img-top" 
               alt="Student reading book illustration" 
             >
@@ -207,10 +217,9 @@
               <p class="card-text"><strong>Branch:</strong> <%= book.branch %></p>
               <p class="card-text"><strong>Subject:</strong> <%= book.subject %></p>
               <p class="card-text"><strong>Price:</strong> ₹<%= book.price.toFixed(2) %></p>
-                            <p class="card-text"><strong>phone:</strong> <%= book.whatsapp?book.whatsapp : "+91xxxxx xxxxx"%></p>
+              <p class="card-text"><strong>Phone:</strong> <%= book.whatsapp ? book.whatsapp : "+91xxxxx xxxxx" %></p>
 
-
-              <% if(currUser && currUser._id.equals(book.owner._id)){ %>
+              <% if(currUser && currUser._id.equals(book.owner._id)) { %>
                 <a href="/sh/book/<%= book._id %>/edit" class="btn btn-warning btn-sm mb-1">Edit</a>
                 <form 
                   action="/sh/book/<%= book._id %>?_method=DELETE" 

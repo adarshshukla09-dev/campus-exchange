@@ -2,136 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stationery | Campus Exchange</title>
-<link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
-  <!-- Bootstrap & FontAwesome -->
+  <link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
 
   <style>
     body {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: rgba(0, 0, 0, 0.05);
+      color: #2c3e50;
     }
-
-    /* Navbar */
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo h2 {
-      margin: 0;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-    }
-
-    nav a {
-      color: white;
+    a {
       text-decoration: none;
+    }
+
+    .navbar-custom {
+      background: #2c3e50;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link,
+    .navbar-custom .dropdown-toggle {
+      color: white;
       font-weight: 600;
       font-size: 1rem;
       transition: color 0.3s ease;
+      position: relative;
     }
-
-    nav a:hover {
+    .navbar-custom .nav-link:hover,
+    .navbar-custom .dropdown-toggle:hover {
       color: #f1c40f;
     }
-
-    .dropdown-toggle {
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 1.8rem;
-      cursor: pointer;
+    .navbar-custom .nav-link::after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 0;
+      background: #f1c40f;
+      left: 0;
+      bottom: 0;
+      transition: width 0.3s ease;
+    }
+    .navbar-custom .nav-link:hover::after {
+      width: 100%;
     }
 
     .dropdown-menu a.dropdown-item {
       color: #2c3e50;
       font-weight: 600;
     }
-
     .dropdown-menu a.dropdown-item:hover {
       background-color: #3498db;
       color: white;
     }
 
-    /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #3498db, #2980b9);
       color: white;
       text-align: center;
-      padding: 60px 20px;
+      padding: 80px 20px;
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      user-select: none;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .hero h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
+      font-size: 3rem;
+      font-weight: 700;
       margin-bottom: 10px;
     }
-
     .hero p {
-      font-size: 1.1rem;
-      opacity: 0.95;
+      font-size: 1.25rem;
+      opacity: 0.9;
     }
 
-    /* Cards */
     .container {
-      margin-top: 40px;
+      padding-top: 40px;
+      padding-bottom: 40px;
     }
-
     .card {
-      margin-bottom: 30px;
-      border: none;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 30px;
+      font-weight: 600;
     }
-
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     }
-
     .card-img-top {
-      height: 200px;
+      height: 180px;
       object-fit: cover;
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
+      background: #f7f7f7;
+      padding: 10px;
     }
-
+    .card-body {
+      padding: 1rem 1.25rem;
+    }
     .card-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #2c3e50;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
     }
-
     .card-text {
-      font-size: 0.95rem;
+      font-weight: 500;
       color: #555;
+      margin-bottom: 0.4rem;
     }
 
     .btn-sm {
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.9rem;
       margin-right: 5px;
     }
+    .btn-warning:hover {
+      background-color: #2980b9 !important;
+      border-color: #2980b9 !important;
+      color: white !important;
+    }
+    .btn-danger:hover {
+      background-color: #c0392b !important;
+      border-color: #c0392b !important;
+      color: white !important;
+    }
 
-    /* Footer */
     footer {
       background: #2c3e50;
       color: white;
@@ -139,89 +151,124 @@
       padding: 25px 20px;
       font-size: 0.95rem;
       font-weight: 500;
-      margin-top: 60px;
+      border-top: 3px solid #f1c40f;
+    }
+
+    @media (max-width: 768px) {
+      
+      .hero {
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+      .card {
+        margin-bottom: 20px;
+      }
+      .card-img-top {
+        height: auto;
+        max-height: 250px;
+      }
+      .card-body {
+        font-size: 0.95rem;
+      }
+      .card-title {
+        font-size: 1.2rem;
+      }
+      .card-text {
+        font-size: 0.9rem;
+      }
+      .btn-sm {
+        width: 100%;
+        margin-top: 5px;
+        margin-right: 0;
+      }
     }
   </style>
 </head>
 
 <body>
-<!-- Header -->
-  <header role="banner">
-    <div class="logo" onclick="location.href='/sh'" role="button" tabindex="0" aria-label="Campus Exchange Home">
-      <h2>Campus Exchange</h2>
-    </div>
 
-    <nav role="navigation" aria-label="Main Navigation">
-      <a href="/sh" title="Home"><i class="fa-solid fa-house"></i></a>
-      <a href="/sh/note">Notes</a>
-      <a href="/sh/book">Books</a>
-      <a href="/sh/stationary">Stationery</a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-custom sticky-top" aria-label="Primary Navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="/sh">Campus Exchange</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <!-- Dropdown -->
-      <div class="dropdown">
-        <button
-          class="dropdown-toggle"
-          type="button"
-          id="userDropdown"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          aria-label="User menu"
-        >
-          <i class="fa-solid fa-circle-user"></i>
-        </button>
-
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-          <% if (!currUser) { %>
-            <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
-            <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
-          <% } else { %>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
-          <% } %>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link" href="/sh"><i class="fa-solid fa-house"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="/sh/note">Notes</a></li>
+          <li class="nav-item"><a class="nav-link" href="/sh/book">Books</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/sh/stationary" aria-current="page">Stationery</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-circle-user"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <% if (!currUser) { %>
+                <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
+                <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
+              <% } else { %>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
+              <% } %>
+            </ul>
+          </li>
         </ul>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
   <!-- Hero -->
-  <section class="hero">
+  <section class="hero" role="region" aria-label="Stationery Hero">
     <h1>Browse Stationery by Branch</h1>
     <p>Explore affordable stationery listed by students in your department</p>
   </section>
 
   <!-- Stationery Grid -->
-  <div class="container">
-    <div class="row">
+  <main class="container" role="main" aria-label="Stationery Listings">
+    <div class="row g-4">
       <% sats.forEach(function(sat) { %>
-        <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="card">
-<img src="<%= sat.image.url ? sat.image.url : 'https://images.pexels.com/photos/5185074/pexels-photo-5185074.jpeg' %>"  class="card-img-top" 
-              alt="Student reading book illustration" >
-
+        <article class="col-lg-4 col-md-6 col-sm-12" tabindex="0" aria-label="Stationery: <%= sat.title %>">
+          <div class="card shadow-sm">
+            <img
+              src="<%= sat.image?.url || 'https://images.pexels.com/photos/5185074/pexels-photo-5185074.jpeg' %>"
+              class="card-img-top"
+              alt="Image of <%= sat.title %>"
+              loading="lazy"
+              decoding="async"
+            />
             <div class="card-body">
-              <h5 class="card-title"><%= sat.title %></h5>
-              <p class="card-text"><strong>Uploaded by:</strong> <%= sat.owner ? sat.owner.username : "Unknown Owner" %></p>
+              <h2 class="card-title"><%= sat.title %></h2>
+              <p class="card-text"><strong>Listed by:</strong> <%= sat.owner?.username || 'Unknown' %></p>
               <p class="card-text"><strong>Branch:</strong> <%= sat.branch %></p>
               <p class="card-text"><strong>Subject:</strong> <%= sat.subject %></p>
-                <p class="card-text"><strong>phone:</strong> <%= sat.whatsapp?sat.whatsapp : "+91xxxxx xxxxx"%></p>
+              <p class="card-text"><strong>Phone:</strong> <%= sat.whatsapp || '+91xxxxx xxxxx' %></p>
+              <p class="card-text"><strong>Price:</strong> ₹<%= sat.price.toFixed(2) %></p>
 
               <% if(currUser && currUser._id.equals(sat.owner._id)) { %>
-                <p class="card-text"><strong>Price:</strong> ₹<%= sat.price.toFixed(2) %></p>
-                <a href="/sh/stationary/<%= sat._id %>/edit" class="btn btn-warning btn-sm mb-1">Edit</a>
-                <form action="/sh/stationary/<%= sat._id %>?_method=DELETE" method="POST" style="display:inline;"
-                  onsubmit="return confirm('Are you sure you want to delete this item?');">
-                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                <a href="/sh/stationary/<%= sat._id %>/edit" class="btn btn-warning btn-sm" aria-label="Edit <%= sat.title %>">Edit</a>
+                <form action="/sh/stationary/<%= sat._id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                  <button type="submit" class="btn btn-danger btn-sm" aria-label="Delete <%= sat.title %>">Delete</button>
                 </form>
               <% } %>
             </div>
           </div>
-        </div>
+        </article>
       <% }); %>
     </div>
-  </div>
+  </main>
 
   <!-- Footer -->
-  <footer>
+  <footer role="contentinfo">
     <p>&copy; 2025 Campus Exchange | Made for Students</p>
   </footer>
 

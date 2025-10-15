@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><%= title || 'Campus Exchange' %></title>
-<link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
+  <link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
+
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     body {
@@ -104,17 +105,23 @@
 
       <!-- Dropdown -->
       <div class="dropdown">
-        <button class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <button
+          class="dropdown-toggle"
+          type="button"
+          id="userDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
           <i class="fa-solid fa-circle-user"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
           <% if (!currUser) { %>
-            <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
-            <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
+          <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
+          <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
           <% } else { %>
-            <li><a class="dropdown-item" href="/sh/profile">Profile</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
+          <li><a class="dropdown-item" href="/sh/profile">Profile</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
           <% } %>
         </ul>
       </div>
@@ -132,55 +139,88 @@
     <div class="row justify-content-center">
       <div class="col-md-8 col-lg-6">
         <div class="card shadow-sm p-4">
+          <form action="/sh/createn" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <!-- Title -->
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                required
+                placeholder="e.g. Engineering Mechanics Notes"
+              />
+              <div class="invalid-feedback">Please enter the title.</div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
 
-          
-        <form action="/sh/createn" method="POST" enctype="multipart/form-data">
-  <!-- Title -->
-  <div class="mb-3">
-    <label for="title" class="form-label" required>Title</label>
-    <input type="text" class="form-control" id="title" name="title" required placeholder="e.g. Engineering Mechanics Notes">
-  </div>
-   <div class="invalid-feedback">
-        Please title
-      </div>
-    <div class="valid-feedback">
-      Looks good!
-    </div>
-  <!-- Subject -->
-  <div class="mb-3">
-    <label for="subject" class="form-label">Subject</label>
-    <input type="text" class="form-control" id="subject" name="subject" required placeholder="e.g. Mechanics">
-  </div>
-     <div class="invalid-feedback">
-enter the subject     </div>
-  <!-- Image Upload -->
-  <div class="mb-3">
-    <label for="image" class="form-label">Upload file</label>
-    <input type="file" class="form-control" id="image" name="image" accept="*/*" required>
-    <div class="form-text">Optional. A cover image or relevant picture.</div>
-  </div>
-        <div class="invalid-feedback">
-upload image    </div>
-  <!-- Number -->
-<div class="mb-3">
-            <label for="whatsapp" class="form-label">phone no</label>
-            <input type="text" class="form-control" id="whatsapp" maxlength="10" name="whatsapp" placeholder="+91xxxxxxx">
-          </div>
-  <!-- Branch -->
-  <div class="mb-3">
-    <label for="branch" class="form-label">Branch</label>
-    <input type="text" class="form-control" id="branch" name="branch" required placeholder="e.g. CSE, ECE">
-  </div>
-     <div class="invalid-feedback">
-enter youre branch   </div>
-  <!-- Submit -->
-  <div class="d-grid mt-4">
-    <button type="submit" class="btn btn-primary btn-lg">
-      <i class="fa-solid fa-plus"></i> Add Note
-    </button>
-  </div>
-</form>
+            <!-- Subject -->
+            <div class="mb-3">
+              <label for="subject" class="form-label">Subject</label>
+              <input
+                type="text"
+                class="form-control"
+                id="subject"
+                name="subject"
+                required
+                placeholder="e.g. Mechanics"
+              />
+              <div class="invalid-feedback">Please enter the subject.</div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
 
+            <!-- Image Upload -->
+            <div class="mb-3">
+              <label for="image" class="form-label">Upload file</label>
+              <input
+                type="file"
+                class="form-control"
+                id="image"
+                name="image"
+                accept="*/*"
+              />
+              <div class="form-text">Optional. A cover image or relevant picture.</div>
+              <div class="invalid-feedback">Please upload a valid file.</div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="mb-3">
+              <label for="whatsapp" class="form-label">Phone Number</label>
+              <input
+                type="tel"
+                pattern="[0-9]{10}"
+                class="form-control"
+                id="whatsapp"
+                maxlength="10"
+                name="whatsapp"
+                placeholder="e.g. 9876543210"
+              />
+              <div class="invalid-feedback">Please enter a valid 10-digit phone number.</div>
+            </div>
+
+            <!-- Branch -->
+            <div class="mb-3">
+              <label for="branch" class="form-label">Branch</label>
+              <input
+                type="text"
+                class="form-control"
+                id="branch"
+                name="branch"
+                required
+                placeholder="e.g. CSE, ECE"
+              />
+              <div class="invalid-feedback">Please enter your branch.</div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <!-- Submit -->
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-plus"></i> Add Note
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -190,27 +230,32 @@ enter youre branch   </div>
   <footer>
     <p>&copy; 2025 Campus Exchange | Made for Students</p>
   </footer>
-<script>(function () {
-  "use strict";
 
-  // Fetch all the forms we want to apply custom validation to
-  var forms = document.querySelectorAll(".needs-validation");
+  <script>
+    (function () {
+      "use strict";
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    form.addEventListener(
-      "submit",
-      function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault(); // Prevent form submission
-          event.stopPropagation();
-        }
-        form.classList.add("was-validated"); // Show validation feedback
-      },
-      false
-    );
-  });
-})();</script>  <!-- Bootstrap JS -->
+      // Fetch all the forms we want to apply custom validation to
+      var forms = document.querySelectorAll(".needs-validation");
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener(
+          "submit",
+          function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault(); // Prevent form submission
+              event.stopPropagation();
+            }
+            form.classList.add("was-validated"); // Show validation feedback
+          },
+          false
+        );
+      });
+    })();
+  </script>
+
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

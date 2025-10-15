@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Campus Exchange</title>
+  <link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo h2 {
+      margin: 0;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #3498db;
+      text-shadow: 0 0 5px #3498db;
+    }
+
+    .dropdown-toggle {
+      background: transparent !important;
+      border: none !important;
+      color: white !important;
+      font-size: 1.8rem;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .dropdown-menu a.dropdown-item {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .dropdown-menu a.dropdown-item:hover {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .about-section {
+      padding: 60px 20px;
+      background-color: white;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #2c3e50;
+    }
+
+    .about-section p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .about-section .features {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .feature-card {
+      background: #f9f9f9;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .feature-card i {
+      font-size: 2.5rem;
+      color: #3498db;
+      margin-bottom: 15px;
+    }
+
+    .feature-card h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px 20px;
+      margin-top: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo" onclick="location.href='/sh'" role="button" tabindex="0" aria-label="Campus Exchange Home">
+      <h2>Campus Exchange</h2>
+    </div>
+    <nav>
+      <a href="/sh" title="Home"><i class="fa-solid fa-house"></i></a>
+      <a href="/sh/note">Notes</a>
+      <a href="/sh/book">Books</a>
+      <a href="/sh/stationary">Stationery</a>
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-circle-user"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <% if (!currUser) { %>
+            <li><a class="dropdown-item" href="/sh/signup">Sign Up</a></li>
+            <li><a class="dropdown-item" href="/sh/login">Sign In</a></li>
+          <% } else { %>
+            <li><a class="dropdown-item" href="/sh/profile">Profile</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="/sh/logout">Logout</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to Campus Exchange</h1>
+    <p>Connecting seniors with juniors for academic resources like notes, books, and stationery — saving time, money, and the planet!</p>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="about-section">
+    <h2>About Us</h2>
+    <p>Campus Exchange is a student-driven platform built to support the academic community within colleges and universities. Our goal is to help **senior students** effortlessly find **junior students** who are looking to sell their pre-used but valuable study materials like notes, books, and stationery.</p>
+
+    <div class="features">
+      <div class="feature-card">
+        <i class="fa-solid fa-book"></i>
+        <h4>Buy & Sell Notes</h4>
+        <p>Find neatly compiled notes from juniors or sell your own to help others succeed.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-book-open-reader"></i>
+        <h4>Affordable Books</h4>
+        <p>Reduce expenses by buying second-hand academic books from trusted peers.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-pen-ruler"></i>
+        <h4>Get Stationery</h4>
+        <p>From pens to calculators, everything you need at student-friendly prices.</p>
+      </div>
+    </div>
+  </section>
+  <div class="text-center my-4">
+  <a href="/sh" class="btn btn-primary btn-lg">
+    Get Started
+  </a>
+</div>
+
+<div class="container my-5">
+  <div class="card shadow-sm border-0">
+    <div class="card-body text-center">
+      <h3 class="card-title mb-3">Meet the Developer</h3>
+      <img src="../logo/logo.jpg" alt="Developer Photo" class="rounded-circle mb-3" width="100" height="100">
+      <p class="card-text mb-2">
+        Hi! I'm <strong>Adarsh shukla</strong>, the developer behind Campus Exchange. 
+        <br>
+        this is madeup by using ejs templates(since i was still learning react),node,express,mongodb.
+      </p>
+      <p class="card-text">
+        Feel free to connect with me:
+      </p>
+      <div>
+        scource:- <a href="https://github.com/adarshshukla09-dev/campus-exchange
+" target="_blank" class="btn btn-outline-dark btn-sm mx-1">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <br>
+        <a href="https://github.com/adarshshukla09-dev
+" target="_blank" class="btn btn-outline-dark btn-sm mx-1">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+       
+        
+        <a href="adarsh.pccoer@gmail.com" class="btn btn-outline-danger btn-sm mx-1">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Campus Exchange | Made for Students</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

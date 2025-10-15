@@ -82,7 +82,9 @@ app.use("/sh", createRoutes); // Create Note
 app.use("/sh", showRoutes); // Read/Show Notes
 app.use("/sh", updateRoutes); // Update Note
 app.use("/sh", deleteRoutes); // Delete Note
-
+app.get("/", (req, res) => {
+  res.render("./show/landing.ejs");
+});
 // 404 Handler
 app.all("*", (req, res, next) => {
   const error = new ExpressError("Page Not Found", 404);

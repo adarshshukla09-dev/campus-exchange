@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About Us | Campus Exchange</title>
   <link rel="icon" href="https://icons.veryicon.com/png/o/miscellaneous/icon-pack/graduation-hat-3.png" type="image/x-icon" />
   
@@ -15,8 +15,9 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: #f4f4f9;
+      color: #2c3e50;
     }
 
     header {
@@ -26,18 +27,21 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .logo h2 {
       margin: 0;
       font-weight: 700;
       cursor: pointer;
+      font-size: 1.5rem;
     }
 
     nav {
       display: flex;
       align-items: center;
       gap: 1.25rem;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -72,15 +76,16 @@
       color: white;
     }
 
+    /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #3498db, #2980b9);
       color: white;
-      padding: 80px 20px;
+      padding: 100px 20px;
       text-align: center;
     }
 
     .hero h1 {
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-weight: 700;
       margin-bottom: 20px;
     }
@@ -92,6 +97,7 @@
       line-height: 1.6;
     }
 
+    /* About Section */
     .about-section {
       padding: 60px 20px;
       background-color: white;
@@ -99,10 +105,9 @@
     }
 
     .about-section h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-bottom: 20px;
       font-weight: 700;
-      color: #2c3e50;
     }
 
     .about-section p {
@@ -114,7 +119,7 @@
     }
 
     .about-section .features {
-      margin-top: 40px;
+      margin-top: 50px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -128,6 +133,11 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       max-width: 300px;
       text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
     }
 
     .feature-card i {
@@ -142,16 +152,91 @@
       margin-bottom: 10px;
     }
 
+    /* Developer Card */
+    .card-body img {
+      object-fit: cover;
+    }
+
     footer {
       background: #2c3e50;
       color: white;
       text-align: center;
-      padding: 15px 20px;
-      margin-top: 60px;
+      padding: 20px;
       font-weight: 600;
       font-size: 1rem;
+      border-top: 3px solid #3498db;
     }
-    
+
+    /* ============ RESPONSIVE MEDIA QUERIES ============ */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1.05rem;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 60px 15px;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .feature-card {
+        max-width: 90%;
+      }
+
+      .about-section p {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+
+      .about-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo h2 {
+        font-size: 1.2rem;
+      }
+
+      nav a {
+        font-size: 0.9rem;
+      }
+
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+      }
+
+      footer {
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 
@@ -194,7 +279,11 @@
   <!-- About Us Section -->
   <section class="about-section">
     <h2>About Us</h2>
-    <p>Campus Exchange is a student-driven platform built to support the academic community within colleges and universities. Our goal is to help **senior students** effortlessly find **junior students** who are looking to sell their pre-used but valuable study materials like notes, books, and stationery.</p>
+    <p>
+      Campus Exchange is a student-driven platform built to support the academic community within colleges and universities. 
+      Our goal is to help <strong>senior students</strong> effortlessly find <strong>junior students</strong> who are looking 
+      to sell their pre-used but valuable study materials like notes, books, and stationery.
+    </p>
 
     <div class="features">
       <div class="feature-card">
@@ -214,44 +303,35 @@
       </div>
     </div>
   </section>
-  <div class="text-center my-4">
-  <a href="/sh" class="btn btn-primary btn-lg">
-    Get Started
-  </a>
-</div>
 
-<div class="container my-5">
-  <div class="card shadow-sm border-0">
-    <div class="card-body text-center">
-      <h3 class="card-title mb-3">Meet the Developer</h3>
-      <img src="../logo/logo.jpg" alt="Developer Photo" class="rounded-circle mb-3" width="100" height="100">
-      <p class="card-text mb-2">
-        Hi! I'm <strong>Adarsh shukla</strong>, the developer behind Campus Exchange. 
-        <br>
-        this is madeup by using ejs templates(since i was still learning react),node,express,mongodb.
-      </p>
-      <p class="card-text">
-        Feel free to connect with me:
-      </p>
-      <div>
-        scource:- <a href="https://github.com/adarshshukla09-dev/campus-exchange
-" target="_blank" class="btn btn-outline-dark btn-sm mx-1">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-        <br>
-        <a href="https://github.com/adarshshukla09-dev
-" target="_blank" class="btn btn-outline-dark btn-sm mx-1">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-       
-        
-        <a href="adarsh.pccoer@gmail.com" class="btn btn-outline-danger btn-sm mx-1">
-          <i class="fas fa-envelope"></i> Email
-        </a>
+  <div class="text-center my-4">
+    <a href="/sh" class="btn btn-primary btn-lg">Get Started</a>
+  </div>
+
+  <!-- Developer Card -->
+  <div class="container my-5">
+    <div class="card shadow-sm border-0 mx-auto" style="max-width: 500px;">
+      <div class="card-body text-center">
+        <h3 class="card-title mb-3">Meet the Developer</h3>
+        <img src="../logo/logo.jpg" alt="Developer Photo" class="rounded-circle mb-3" width="100" height="100">
+        <p class="card-text mb-2">
+          Hi! I'm <strong>Adarsh Shukla</strong>, a first-year student at PCCOER and the developer behind Campus Exchange.
+          <br>This project uses EJS templates, Node.js, Express, and MongoDB.
+        </p>
+        <p>Feel free to connect with me:</p>
+        <div>
+          Source:
+          <a href="https://github.com/adarshshukla09-dev/campus-exchange" target="_blank" class="btn btn-outline-dark btn-sm mx-1">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <br>
+          <a href="mailto:adarsh.pccoer@gmail.com" class="btn btn-outline-danger btn-sm mx-1">
+            <i class="fas fa-envelope"></i> Email
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <!-- Footer -->
   <footer>
